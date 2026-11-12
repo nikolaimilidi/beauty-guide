@@ -9,8 +9,7 @@
   </p>
   {% if advertisers %}
   <aside class="ad-note">
-    <strong>Реклама.</strong> В статье есть партнёрские ссылки: если вы купите по ним, мы получим комиссию, цена для вас не меняется.
-    <a href="{{ u('/how-we-earn/') }}">Как мы зарабатываем</a>.
+    <strong>Реклама.</strong>
     {% for ad in advertisers %}{% if ad.advertiser or ad.erid %}
     <span class="ad-ids">{{ ad.name }}{% if ad.advertiser %}: {{ ad.advertiser }}{% endif %}{% if ad.inn %}, ИНН {{ ad.inn }}{% endif %}{% if ad.erid %}, erid: {{ ad.erid }}{% endif %}.</span>
     {% endif %}{% endfor %}
