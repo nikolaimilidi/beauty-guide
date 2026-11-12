@@ -15,8 +15,10 @@
 {% if site.yandex_verification %}
 <meta name="yandex-verification" content="{{ site.yandex_verification }}">
 {% endif %}
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%238c2f4b'/%3E%3Ctext x='16' y='22' font-size='18' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='white'%3E{{ site.name[0] }}%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#8c2f4b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231b1816'/%3E%3Ctext x='16' y='22' font-size='18' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='white'%3E{{ site.name[0] }}%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f4efe9">
+<link rel="preload" href="{{ u('/static/fonts/cormorant-garamond-cyrillic-44d82a.woff2') }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ u('/static/fonts.css') }}">
 <link rel="stylesheet" href="{{ u('/static/style.css') }}">
 {% for j in jsonld|default([]) %}
 <script type="application/ld+json">{{ j|safe }}</script>
@@ -25,7 +27,7 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="{{ u('/') }}"><span class="logo-mark" aria-hidden="true">{{ site.name[0] }}</span>{{ site.name }}</a>
+    <a class="logo" href="{{ u('/') }}">{{ site.name }}</a>
     <nav aria-label="Рубрики">
       {% for key, c in cats.items() %}<a href="{{ u('/' + key + '/') }}">{{ c.title }}</a>{% endfor %}
     </nav>
@@ -43,7 +45,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <p><strong>{{ site.name }}</strong></p>
+        <p class="brand">{{ site.name }}</p>
         <p>Подборки, сравнения и гайды по красоте, уходу и одежде. Пишем конкретно и без выдуманных «тестов».</p>
       </div>
       <div>

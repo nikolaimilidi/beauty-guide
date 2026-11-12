@@ -1,28 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
-  <p class="eyebrow">Красота · Уход · Одежда</p>
-  <h1>Выбираем без воды: что покупать, а что пропустить</h1>
-  <p>{{ site.description }}</p>
+  <div>
+    <p class="label">Красота · Уход · Одежда</p>
+    <h1>Выбираем без воды: что покупать, а что пропустить</h1>
+    <p class="sub">{{ site.description }}</p>
+    <a class="btn solid" href="{{ u('/gifts/') }}">Подарки на Новый год</a>
+  </div>
+  <div class="hero-art" role="img" aria-label="Декоративный фон"><span>Подборки · Гайды · Сравнения</span></div>
 </section>
 <section>
   <div class="tiles">
     {% for key, c in cats.items() %}
-    <a class="tile tile-{{ key }}" href="{{ u('/' + key + '/') }}">
+    <a class="tile" href="{{ u('/' + key + '/') }}">
+      <span class="n">0{{ loop.index }}</span>
       <strong>{{ c.title }}</strong>
-      <span>{{ c.description }}</span>
-      <em>{% if counts[key] %}Статей: {{ counts[key] }}{% else %}Скоро{% endif %} →</em>
+      <span class="d">{{ c.description }}</span>
+      <em>{% if counts[key] %}Статей: {{ counts[key] }}{% else %}Скоро{% endif %}</em>
     </a>
     {% endfor %}
   </div>
 </section>
 <section>
-  <div class="section-title"><h2>Свежие статьи</h2></div>
+  <div class="section-head"><h2>Свежие статьи</h2></div>
   {% include "_list.html" %}
 </section>
 <section class="trust" aria-label="Как мы работаем">
-  <div><span class="num">1</span><h3>Без выдуманного опыта</h3><p>Не пишем «я протестировал», если этого не было. Подборки строятся на открытых данных и понятных критериях выбора.</p></div>
-  <div><span class="num">2</span><h3>Честно про деньги</h3><p>Часть ссылок партнёрские, и мы об этом говорим прямо. Такие статьи помечены, а цена для вас не растёт.</p></div>
-  <div><span class="num">3</span><h3>Цены не выдумываем</h3><p>Цены и акции быстро меняются, поэтому даём ориентиры и просим проверять актуальное в магазине.</p></div>
+  <div><span class="n">01</span><h3>Без выдуманного опыта</h3><p>Не пишем «я протестировал», если этого не было. Подборки строятся на открытых данных и понятных критериях выбора.</p></div>
+  <div><span class="n">02</span><h3>Честно про деньги</h3><p>Часть ссылок партнёрские, и мы об этом говорим прямо. Такие статьи помечены, а цена для вас не растёт.</p></div>
+  <div><span class="n">03</span><h3>Цены не выдумываем</h3><p>Цены и акции быстро меняются, поэтому даём ориентиры и просим проверять актуальное в магазине.</p></div>
 </section>
 {% endblock %}

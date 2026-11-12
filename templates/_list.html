@@ -2,8 +2,8 @@
 <ul class="post-list">
   {% for p in posts %}
   <li>
-    <span class="tag tag-{{ p.category }}">{{ cats[p.category].title }}</span>
-    <a href="{{ u('/' + p.slug + '/') }}">{{ p.title }}</a>
+    <span class="tag">{{ cats[p.category].title }}</span>
+    <a class="t" href="{{ u('/' + p.slug + '/') }}">{{ p.title }}</a>
     <p>{{ p.description }}</p>
     <time datetime="{{ p.date.isoformat() }}">{{ ru_date(p.date) }}</time>
   </li>
