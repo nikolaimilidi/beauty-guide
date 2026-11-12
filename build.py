@@ -93,10 +93,11 @@ def render_products(m, slug):
     cards = "".join(
         '<li><span class="pb">{b}</span><span class="pt">{t}</span>'
         '<span class="pp">около {p}</span>'
-        '<span class="pr">★ {r} · {n} оценок</span></li>'.format(
+        '<span class="pr">★ {r} · {n} оценок</span>{w}</li>'.format(
             b=html.escape(i["brand"]), t=html.escape(i["title"]), p=fmt_price(i["price"]),
             r=str(i["rating"]).replace(".", ","),
-            n=f"{i['reviews']:,}".replace(",", "\u00a0"))
+            n=f"{i['reviews']:,}".replace(",", "\u00a0"),
+            w=(f'<span class="pw">{html.escape(i["note"])}</span>' if i.get("note") else ""))
         for i in items)
     note = st["note"]
     if note.startswith(BASE_NOTE):
@@ -132,16 +133,23 @@ def render_budget(m, slug):
     cards = "".join(
         '<li><span class="pb">{l} · {b}</span><span class="pt">{t}</span>'
         '<span class="pp">около {p}</span>'
-        '<span class="pr">★ {r} · {n} оценок</span></li>'.format(
+        '<span class="pr">★ {r} · {n} оценок</span>{w}</li>'.format(
             l=html.escape(label), b=html.escape(i["brand"]), t=html.escape(i["title"]),
             p=fmt_price(i["price"]), r=str(i["rating"]).replace(".", ","),
-            n=f"{i['reviews']:,}".replace(",", "\u00a0"))
+            n=f"{i['reviews']:,}".replace(",", "\u00a0"),
+            w=(f'<span class="pw">{html.escape(i["note"])}</span>' if i.get("note") else ""))
         for label, st, i in chosen)
     return (f'<div class="products"><ul>{cards}</ul><p class="pn">Данные Wildberries на {ru_date(dt)}. '
             f'{html.escape(BASE_NOTE)}</p></div>')
 
 
+METHOD_HTML = ('<aside class="method"><strong>Как мы отбираем.</strong> Берём публичную выдачу Wildberries '
+    'по запросу, оставляем карточки с рейтингом от 4,7 и от 1000 оценок, отбрасываем подозрительные цены и явные копии. '
+    'Мы не тестируем товары лично: выбор строится на оценках, числе заказов, цене и описании продавца, и в тексте мы это оговариваем.</aside>')
+
+
 def render_body(body, slug, posts, used_aff):
+    body = re.sub(r"^\{\{method\}\}[ \t]*$", METHOD_HTML, body, flags=re.M)
     body = re.sub(r"^\{\{budget:(\d+):(\d+):(\d+)\}\}[ \t]*$",
                   lambda m: render_budget(m, slug), body, flags=re.M)
     body = re.sub(r"^\{\{products:([a-z0-9-]+)(?::(\d+))?\}\}[ \t]*$",
