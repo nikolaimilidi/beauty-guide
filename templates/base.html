@@ -15,6 +15,8 @@
 {% if site.yandex_verification %}
 <meta name="yandex-verification" content="{{ site.yandex_verification }}">
 {% endif %}
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%238c2f4b'/%3E%3Ctext x='16' y='22' font-size='18' font-family='Georgia,serif' font-weight='700' text-anchor='middle' fill='white'%3E{{ site.name[0] }}%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#8c2f4b">
 <link rel="stylesheet" href="{{ u('/static/style.css') }}">
 {% for j in jsonld|default([]) %}
 <script type="application/ld+json">{{ j|safe }}</script>
@@ -23,7 +25,7 @@
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="{{ u('/') }}">{{ site.name }}</a>
+    <a class="logo" href="{{ u('/') }}"><span class="logo-mark" aria-hidden="true">{{ site.name[0] }}</span>{{ site.name }}</a>
     <nav aria-label="Рубрики">
       {% for key, c in cats.items() %}<a href="{{ u('/' + key + '/') }}">{{ c.title }}</a>{% endfor %}
     </nav>
@@ -39,8 +41,24 @@
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <p>{{ site.name }}. Часть ссылок на сайте партнёрские: если вы купите по ним, мы получим комиссию, цена для вас не меняется.</p>
-    <p><a href="{{ u('/about/') }}">О сайте</a> · <a href="{{ u('/how-we-earn/') }}">Как мы зарабатываем</a> · <a href="{{ u('/privacy/') }}">Политика конфиденциальности</a></p>
+    <div class="footer-grid">
+      <div>
+        <p><strong>{{ site.name }}</strong></p>
+        <p>Подборки, сравнения и гайды по красоте, уходу и одежде. Пишем конкретно и без выдуманных «тестов».</p>
+      </div>
+      <div>
+        <h4>Рубрики</h4>
+        {% for key, c in cats.items() %}<a href="{{ u('/' + key + '/') }}">{{ c.title }}</a>{% endfor %}
+      </div>
+      <div>
+        <h4>О сайте</h4>
+        <a href="{{ u('/about/') }}">О проекте</a>
+        <a href="{{ u('/how-we-earn/') }}">Как мы зарабатываем</a>
+        <a href="{{ u('/privacy/') }}">Конфиденциальность</a>
+        {% if site.contact_email %}<a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a>{% endif %}
+      </div>
+    </div>
+    <p class="legal">Часть ссылок на сайте партнёрские: если вы купите по ним, мы получим комиссию, цена для вас не меняется. Материалы не являются медицинской консультацией.</p>
   </div>
 </footer>
 {% if site.metrika_id %}

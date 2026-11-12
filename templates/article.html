@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<article>
+<article class="page">
   <h1>{{ p.title }}</h1>
-  <p class="meta">
-    <a href="{{ u('/' + p.category + '/') }}">{{ cat.title }}</a> ·
+  <p class="byline">
+    <a href="{{ u('/' + p.category + '/') }}">{{ cat.title }}</a>
+    <span class="dot">•</span>
     Опубликовано <time datetime="{{ p.date.isoformat() }}">{{ ru_date(p.date) }}</time>{% if p.updated != p.date %}, обновлено <time datetime="{{ p.updated.isoformat() }}">{{ ru_date(p.updated) }}</time>{% endif %}
   </p>
   {% if advertisers %}

@@ -56,8 +56,8 @@ def split_front(text, name):
 site = load_yaml(ROOT / "data" / "site.yml")
 cats = load_yaml(ROOT / "data" / "categories.yml")
 links = load_yaml(ROOT / "data" / "links.yml")
-BASE = site.get("base_path", "").rstrip("/")
-SITE_URL = site["site_url"].rstrip("/")
+BASE = os.environ.get("BASE_PATH", site.get("base_path", "")).rstrip("/")  # BASE_PATH="" для локального просмотра
+SITE_URL = os.environ.get("SITE_URL", site["site_url"]).rstrip("/")
 
 
 def u(path):
@@ -170,7 +170,9 @@ def main():
     # главная
     write("index.html", env.get_template("index.html").render(
         path="/", title=site["name"], description=site["description"],
-        posts=ordered[:12], jsonld=[ld({
+        posts=ordered[:12],
+        counts={k: sum(1 for p in ordered if p["category"] == k) for k in cats},
+        jsonld=[ld({
             "@context": "https://schema.org", "@type": "WebSite",
             "name": site["name"], "url": a("/"), "inLanguage": "ru"})]))
     sitemap.append(("/", max((p["updated"] for p in ordered), default=date.today())))

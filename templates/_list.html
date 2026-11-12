@@ -2,6 +2,7 @@
 <ul class="post-list">
   {% for p in posts %}
   <li>
+    <span class="tag tag-{{ p.category }}">{{ cats[p.category].title }}</span>
     <a href="{{ u('/' + p.slug + '/') }}">{{ p.title }}</a>
     <p>{{ p.description }}</p>
     <time datetime="{{ p.date.isoformat() }}">{{ ru_date(p.date) }}</time>
@@ -9,5 +10,5 @@
   {% endfor %}
 </ul>
 {% else %}
-<p>Статьи скоро появятся.</p>
+<p class="empty">Первые статьи скоро появятся.</p>
 {% endif %}

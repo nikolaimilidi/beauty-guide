@@ -1,19 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
-  <h1>{{ site.name }}</h1>
+  <p class="eyebrow">Красота · Уход · Одежда</p>
+  <h1>Выбираем без воды: что покупать, а что пропустить</h1>
   <p>{{ site.description }}</p>
 </section>
 <section>
-  <h2>Рубрики</h2>
-  <div class="cards">
+  <div class="tiles">
     {% for key, c in cats.items() %}
-    <a class="card" href="{{ u('/' + key + '/') }}"><strong>{{ c.title }}</strong><span>{{ c.description }}</span></a>
+    <a class="tile tile-{{ key }}" href="{{ u('/' + key + '/') }}">
+      <strong>{{ c.title }}</strong>
+      <span>{{ c.description }}</span>
+      <em>{% if counts[key] %}Статей: {{ counts[key] }}{% else %}Скоро{% endif %} →</em>
+    </a>
     {% endfor %}
   </div>
 </section>
 <section>
-  <h2>Свежие статьи</h2>
+  <div class="section-title"><h2>Свежие статьи</h2></div>
   {% include "_list.html" %}
+</section>
+<section class="trust" aria-label="Как мы работаем">
+  <div><span class="num">1</span><h3>Без выдуманного опыта</h3><p>Не пишем «я протестировал», если этого не было. Подборки строятся на открытых данных и понятных критериях выбора.</p></div>
+  <div><span class="num">2</span><h3>Честно про деньги</h3><p>Часть ссылок партнёрские, и мы об этом говорим прямо. Такие статьи помечены, а цена для вас не растёт.</p></div>
+  <div><span class="num">3</span><h3>Цены не выдумываем</h3><p>Цены и акции быстро меняются, поэтому даём ориентиры и просим проверять актуальное в магазине.</p></div>
 </section>
 {% endblock %}
