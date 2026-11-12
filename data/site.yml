@@ -3,8 +3,9 @@ name: "Гид по красоте и стилю"
 description: "Честные подборки, сравнения и гайды: косметика, парфюмерия, мужской уход, одежда и обувь."
 
 # Адрес, где сайт будет жить. Пока GitHub Pages:
-site_url: "https://nikolaimilidi.github.io"
-base_path: "/beauty-guide"   # когда подключишь свой домен, поставь "" и поменяй site_url
+site_url: "https://krasotagid.ru"
+base_path: ""
+custom_domain: "krasotagid.ru"   # пишется в файл CNAME для GitHub Pages
 
 # Яндекс Вебмастер: значение content из мета-тега подтверждения. Пусто = тег не выводится.
 yandex_verification: ""
