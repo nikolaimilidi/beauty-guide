@@ -78,6 +78,10 @@ def fmt_price(n):
     return f"{n:,}".replace(",", "\u00a0") + "\u00a0₽"
 
 
+BASE_NOTE = "Цены с WB Кошельком (персональная скидка), на дату сбора, у других покупателей могут отличаться. Отобраны карточки с числом оценок от 1000."
+_note_shown = set()
+
+
 def render_products(m, slug):
     key, limit = m.group(1), m.group(2)
     st = PRODUCTS.get(key)
@@ -94,9 +98,15 @@ def render_products(m, slug):
             r=str(i["rating"]).replace(".", ","),
             n=f"{i['reviews']:,}".replace(",", "\u00a0"))
         for i in items)
-    return (f'<div class="products"><ul>{cards}</ul>'
-            f'<p class="pn">Данные {html.escape(st["source"])} на {ru_date(d)}. '
-            f'{html.escape(st["note"])}</p></div>')
+    note = st["note"]
+    if note.startswith(BASE_NOTE):
+        extra = note[len(BASE_NOTE):].strip()
+        if slug in _note_shown:
+            note = extra
+        _note_shown.add(slug)
+    head = f'Данные {st["source"]} на {ru_date(d)}. ' if note else ""
+    foot = f'<p class="pn">{html.escape(head + note)}</p>' if (head or note) else ""
+    return f'<div class="products"><ul>{cards}</ul>{foot}</div>'
 
 
 def render_body(body, slug, posts, used_aff):
