@@ -109,7 +109,41 @@ def render_products(m, slug):
     return f'<div class="products"><ul>{cards}</ul>{foot}</div>'
 
 
+def render_budget(m, slug):
+    lo, hi, n = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    pool = []
+    for st in PRODUCTS.values():
+        for i in st["items"]:
+            if lo <= i["price"] <= hi:
+                pool.append((st.get("label", ""), st, i))
+    pool.sort(key=lambda x: -x[2]["reviews"])
+    chosen, per = [], {}
+    for label, st, i in pool:
+        if per.get(label, 0) >= 2:
+            continue
+        per[label] = per.get(label, 0) + 1
+        chosen.append((label, st, i))
+        if len(chosen) >= n:
+            break
+    if not chosen:
+        warn(f"{slug}: в диапазоне {lo}-{hi} нет товаров")
+        return ""
+    dt = min(date.fromisoformat(st["date"]) for _, st, _ in chosen)
+    cards = "".join(
+        '<li><span class="pb">{l} · {b}</span><span class="pt">{t}</span>'
+        '<span class="pp">около {p}</span>'
+        '<span class="pr">★ {r} · {n} оценок</span></li>'.format(
+            l=html.escape(label), b=html.escape(i["brand"]), t=html.escape(i["title"]),
+            p=fmt_price(i["price"]), r=str(i["rating"]).replace(".", ","),
+            n=f"{i['reviews']:,}".replace(",", "\u00a0"))
+        for label, st, i in chosen)
+    return (f'<div class="products"><ul>{cards}</ul><p class="pn">Данные Wildberries на {ru_date(dt)}. '
+            f'{html.escape(BASE_NOTE)}</p></div>')
+
+
 def render_body(body, slug, posts, used_aff):
+    body = re.sub(r"^\{\{budget:(\d+):(\d+):(\d+)\}\}[ \t]*$",
+                  lambda m: render_budget(m, slug), body, flags=re.M)
     body = re.sub(r"^\{\{products:([a-z0-9-]+)(?::(\d+))?\}\}[ \t]*$",
                   lambda m: render_products(m, slug), body, flags=re.M)
     def aff(m):

@@ -86,7 +86,8 @@
           "rating": 4.9,
           "reviews": 32416
         }
-      ]
+      ],
+      "label": "Крем для рук"
     },
     "nabory-dlya-neyo": {
       "source": "Wildberries",
@@ -136,7 +137,8 @@
           "rating": 4.9,
           "reviews": 1519
         }
-      ]
+      ],
+      "label": "Набор для тела"
     },
     "svechi": {
       "source": "Wildberries",
@@ -179,7 +181,8 @@
           "rating": 4.9,
           "reviews": 2078
         }
-      ]
+      ],
+      "label": "Свечи"
     },
     "uhod-dlya-nego": {
       "source": "Wildberries",
@@ -215,7 +218,8 @@
           "rating": 4.9,
           "reviews": 8326
         }
-      ]
+      ],
+      "label": "Уход"
     },
     "koshelki": {
       "source": "Wildberries",
@@ -265,7 +269,8 @@
           "rating": 4.8,
           "reviews": 1792
         }
-      ]
+      ],
+      "label": "Кошелёк"
     },
     "pledy": {
       "source": "Wildberries",
@@ -315,7 +320,8 @@
           "rating": 4.9,
           "reviews": 5552
         }
-      ]
+      ],
+      "label": "Плед"
     },
     "halaty": {
       "source": "Wildberries",
@@ -365,7 +371,8 @@
           "rating": 4.9,
           "reviews": 7332
         }
-      ]
+      ],
+      "label": "Халат"
     },
     "tapochki": {
       "source": "Wildberries",
@@ -401,7 +408,8 @@
           "rating": 4.9,
           "reviews": 21901
         }
-      ]
+      ],
+      "label": "Тапочки"
     },
     "sharfy": {
       "source": "Wildberries",
@@ -444,7 +452,8 @@
           "rating": 4.9,
           "reviews": 1341
         }
-      ]
+      ],
+      "label": "Шарф"
     },
     "perchatki-dlya-nego": {
       "source": "Wildberries",
@@ -494,7 +503,8 @@
           "rating": 4.8,
           "reviews": 2926
         }
-      ]
+      ],
+      "label": "Перчатки"
     },
     "powerbanki": {
       "source": "Wildberries",
@@ -537,7 +547,8 @@
           "rating": 4.8,
           "reviews": 19126
         }
-      ]
+      ],
+      "label": "Повербанк"
     },
     "kolonki": {
       "source": "Wildberries",
@@ -566,7 +577,8 @@
           "rating": 4.8,
           "reviews": 2230
         }
-      ]
+      ],
+      "label": "Колонка"
     }
   }
 }
