@@ -8,7 +8,7 @@ base_path: ""
 custom_domain: "krasotagid.ru"   # пишется в файл CNAME для GitHub Pages
 
 # Яндекс Вебмастер: значение content из мета-тега подтверждения. Пусто = тег не выводится.
-yandex_verification: ""
+yandex_verification: "1a504b0ed54bd2c0"
 # Яндекс Метрика: номер счётчика. Пусто = счётчик не вставляется.
 metrika_id: ""
 
