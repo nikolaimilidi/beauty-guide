@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<article>
+  <h1>{{ p.title }}</h1>
+  <p class="meta">
+    <a href="{{ u('/' + p.category + '/') }}">{{ cat.title }}</a> ·
+    Опубликовано <time datetime="{{ p.date.isoformat() }}">{{ ru_date(p.date) }}</time>{% if p.updated != p.date %}, обновлено <time datetime="{{ p.updated.isoformat() }}">{{ ru_date(p.updated) }}</time>{% endif %}
+  </p>
+  {% if advertisers %}
+  <aside class="ad-note">
+    <strong>Реклама.</strong> В статье есть партнёрские ссылки: если вы купите по ним, мы получим комиссию, цена для вас не меняется.
+    <a href="{{ u('/how-we-earn/') }}">Как мы зарабатываем</a>.
+    {% for ad in advertisers %}{% if ad.advertiser or ad.erid %}
+    <span class="ad-ids">{{ ad.name }}{% if ad.advertiser %}: {{ ad.advertiser }}{% endif %}{% if ad.inn %}, ИНН {{ ad.inn }}{% endif %}{% if ad.erid %}, erid: {{ ad.erid }}{% endif %}.</span>
+    {% endif %}{% endfor %}
+  </aside>
+  {% endif %}
+  {% if p.toc %}
+  <nav class="toc" aria-label="Содержание">
+    <strong>Содержание</strong>
+    <ol>
+      {% for t in p.toc %}<li><a href="#{{ t.id }}">{{ t.name }}</a></li>{% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
+  <div class="prose">{{ p.html|safe }}</div>
+</article>
+{% if related %}
+<section class="related">
+  <h2>Читайте также</h2>
+  <ul>
+    {% for r in related %}<li><a href="{{ u('/' + r.slug + '/') }}">{{ r.title }}</a></li>{% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

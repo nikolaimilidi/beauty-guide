@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>{{ site.name }}</h1>
+  <p>{{ site.description }}</p>
+</section>
+<section>
+  <h2>Рубрики</h2>
+  <div class="cards">
+    {% for key, c in cats.items() %}
+    <a class="card" href="{{ u('/' + key + '/') }}"><strong>{{ c.title }}</strong><span>{{ c.description }}</span></a>
+    {% endfor %}
+  </div>
+</section>
+<section>
+  <h2>Свежие статьи</h2>
+  {% include "_list.html" %}
+</section>
+{% endblock %}

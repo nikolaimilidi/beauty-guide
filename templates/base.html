@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% if path == '/' %}{{ title }}{% else %}{{ title }} | {{ site.name }}{% endif %}</title>
+<meta name="description" content="{{ description }}">
+<link rel="canonical" href="{{ a(path) }}">
+<meta property="og:type" content="{{ og_type|default('website') }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ a(path) }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:locale" content="ru_RU">
+{% if site.yandex_verification %}
+<meta name="yandex-verification" content="{{ site.yandex_verification }}">
+{% endif %}
+<link rel="stylesheet" href="{{ u('/static/style.css') }}">
+{% for j in jsonld|default([]) %}
+<script type="application/ld+json">{{ j|safe }}</script>
+{% endfor %}
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="{{ u('/') }}">{{ site.name }}</a>
+    <nav aria-label="Рубрики">
+      {% for key, c in cats.items() %}<a href="{{ u('/' + key + '/') }}">{{ c.title }}</a>{% endfor %}
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+{% if crumbs is defined %}
+<nav class="crumbs" aria-label="Хлебные крошки">
+  {% for name, p in crumbs %}{% if not loop.last %}<a href="{{ u(p) }}">{{ name }}</a> / {% else %}<span>{{ name }}</span>{% endif %}{% endfor %}
+</nav>
+{% endif %}
+{% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>{{ site.name }}. Часть ссылок на сайте партнёрские: если вы купите по ним, мы получим комиссию, цена для вас не меняется.</p>
+    <p><a href="{{ u('/about/') }}">О сайте</a> · <a href="{{ u('/how-we-earn/') }}">Как мы зарабатываем</a> · <a href="{{ u('/privacy/') }}">Политика конфиденциальности</a></p>
+  </div>
+</footer>
+{% if site.metrika_id %}
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym({{ site.metrika_id }},"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true});
+</script>
+{% endif %}
+</body>
+</html>

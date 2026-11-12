@@ -1,0 +1,39 @@
+:root{--bg:#fff;--fg:#1d1d1f;--muted:#6b6b72;--line:#e6e6ea;--accent:#b0305c;--soft:#faf3f6}
+@media (prefers-color-scheme:dark){:root{--bg:#161618;--fg:#ececef;--muted:#9a9aa3;--line:#2c2c31;--accent:#ff8fb3;--soft:#202024}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+.site-header{border-bottom:1px solid var(--line);padding:12px 0}
+.site-header .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;justify-content:space-between}
+.logo{font-weight:700;text-decoration:none;color:var(--fg)}
+.site-header nav{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:15px}
+.site-header nav a{text-decoration:none}
+main{padding-top:8px;padding-bottom:40px}
+h1{font-size:1.9rem;line-height:1.25;margin:.6em 0 .4em}
+h2{font-size:1.4rem;line-height:1.3;margin:1.6em 0 .5em}
+h3{font-size:1.15rem;margin:1.3em 0 .4em}
+.crumbs{font-size:14px;color:var(--muted);margin-top:14px}
+.crumbs a{color:var(--muted)}
+.meta{color:var(--muted);font-size:14px;margin:0 0 1em}
+.lead{color:var(--muted)}
+.hero p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.card{display:block;padding:14px;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--fg);background:var(--soft)}
+.card span{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+.post-list{list-style:none;padding:0;margin:0}
+.post-list li{padding:14px 0;border-bottom:1px solid var(--line)}
+.post-list a{font-weight:600;font-size:1.1rem}
+.post-list p{margin:.3em 0;color:var(--muted);font-size:15px}
+.post-list time{font-size:13px;color:var(--muted)}
+.ad-note{background:var(--soft);border-left:3px solid var(--accent);padding:10px 14px;font-size:14px;margin:0 0 1.2em;border-radius:4px}
+.ad-ids{display:block;color:var(--muted);margin-top:4px}
+.toc{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:10px 16px;margin:0 0 1.5em;font-size:15px}
+.toc ol{margin:.4em 0 0;padding-left:1.2em}
+.prose table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:15px}
+.prose th,.prose td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.prose th{background:var(--soft)}
+.prose img{max-width:100%;height:auto}
+.related ul{padding-left:1.2em}
+.site-footer{border-top:1px solid var(--line);padding:20px 0;font-size:14px;color:var(--muted)}
+.site-footer a{color:var(--muted)}

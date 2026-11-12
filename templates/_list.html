@@ -1,0 +1,13 @@
+{% if posts %}
+<ul class="post-list">
+  {% for p in posts %}
+  <li>
+    <a href="{{ u('/' + p.slug + '/') }}">{{ p.title }}</a>
+    <p>{{ p.description }}</p>
+    <time datetime="{{ p.date.isoformat() }}">{{ ru_date(p.date) }}</time>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Статьи скоро появятся.</p>
+{% endif %}

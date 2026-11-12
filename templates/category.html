@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ cat.title }}</h1>
+<p class="lead">{{ cat.description }}</p>
+{% include "_list.html" %}
+{% endblock %}
