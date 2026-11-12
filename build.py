@@ -56,6 +56,10 @@ def split_front(text, name):
 site = load_yaml(ROOT / "data" / "site.yml")
 cats = load_yaml(ROOT / "data" / "categories.yml")
 links = load_yaml(ROOT / "data" / "links.yml")
+PRODUCTS = {}
+_pf = ROOT / "data" / "products.json"
+if _pf.exists():
+    PRODUCTS = json.loads(_pf.read_text("utf-8")).get("sets", {})
 BASE = os.environ.get("BASE_PATH", site.get("base_path", "")).rstrip("/")  # BASE_PATH="" для локального просмотра
 SITE_URL = os.environ.get("SITE_URL", site["site_url"]).rstrip("/")
 
@@ -70,7 +74,34 @@ def a(path):
     return SITE_URL + BASE + path
 
 
+def fmt_price(n):
+    return f"{n:,}".replace(",", "\u00a0") + "\u00a0₽"
+
+
+def render_products(m, slug):
+    key, limit = m.group(1), m.group(2)
+    st = PRODUCTS.get(key)
+    if not st:
+        warn(f"{slug}: набор товаров '{key}' не найден в data/products.json")
+        return ""
+    d = date.fromisoformat(st["date"])
+    items = st["items"][: int(limit)] if limit else st["items"]
+    cards = "".join(
+        '<li><span class="pb">{b}</span><span class="pt">{t}</span>'
+        '<span class="pp">около {p}</span>'
+        '<span class="pr">★ {r} · {n} оценок</span></li>'.format(
+            b=html.escape(i["brand"]), t=html.escape(i["title"]), p=fmt_price(i["price"]),
+            r=str(i["rating"]).replace(".", ","),
+            n=f"{i['reviews']:,}".replace(",", "\u00a0"))
+        for i in items)
+    return (f'<div class="products"><ul>{cards}</ul>'
+            f'<p class="pn">Данные {html.escape(st["source"])} на {ru_date(d)}. '
+            f'{html.escape(st["note"])}</p></div>')
+
+
 def render_body(body, slug, posts, used_aff):
+    body = re.sub(r"^\{\{products:([a-z0-9-]+)(?::(\d+))?\}\}[ \t]*$",
+                  lambda m: render_products(m, slug), body, flags=re.M)
     def aff(m):
         text, key = m.group(1), m.group(2)
         link = links.get(key) or {}

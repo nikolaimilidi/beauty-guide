@@ -1,0 +1,92 @@
+{
+  "sets": {
+    "krem-dlya-ruk": {
+      "source": "Wildberries",
+      "query": "крем для рук",
+      "date": "2026-11-12",
+      "note": "Цены с WB Кошельком (персональная скидка), на дату сбора, у других покупателей могут отличаться. Отобраны карточки с числом оценок от 1000.",
+      "items": [
+        {
+          "brand": "Kottur",
+          "title": "Крем для рук и ног увлажняющий с мочевиной",
+          "price": 689,
+          "old_price": 1872,
+          "rating": 4.9,
+          "reviews": 198477
+        },
+        {
+          "brand": "VOIS",
+          "title": "Крем для рук и тела увлажняющий лосьон с мочевиной",
+          "price": 498,
+          "old_price": 1638,
+          "rating": 4.9,
+          "reviews": 67537
+        },
+        {
+          "brand": "SYNERGETIC",
+          "title": "Крем для рук и тела увлажняющий, Пачули и бергамот",
+          "price": 386,
+          "old_price": 999,
+          "rating": 4.9,
+          "reviews": 17796
+        },
+        {
+          "brand": "LA ROCHE-POSAY",
+          "title": "Cicaplast Mains Увлажняющий защитный крем для рук 50 мл",
+          "price": 938,
+          "old_price": 1309,
+          "rating": 4.9,
+          "reviews": 10756
+        },
+        {
+          "brand": "Permegi",
+          "title": "Крем для рук и тела увлажняющий \"Tobacco Vanille\" 300 мл",
+          "price": 288,
+          "old_price": 1028,
+          "rating": 4.8,
+          "reviews": 1764
+        },
+        {
+          "brand": "VOIS",
+          "title": "Крем для рук увлажняющий 3 шт, подарочный набор в коробке",
+          "price": 449,
+          "old_price": 1477,
+          "rating": 4.9,
+          "reviews": 14246
+        },
+        {
+          "brand": "ARAVIA Professional",
+          "title": "Крем для рук увлажняющий для сухой кожи с маслом жожоба",
+          "price": 920,
+          "old_price": 1977,
+          "rating": 4.9,
+          "reviews": 9922
+        },
+        {
+          "brand": "MIXIT",
+          "title": "Крем для рук с брелоком мини",
+          "price": 299,
+          "old_price": 523,
+          "rating": 4.9,
+          "reviews": 1969
+        },
+        {
+          "brand": "HOLLY POLLY",
+          "title": "Крем для рук увлажняющий питательный смягчающий Печенье 75 мл",
+          "price": 208,
+          "old_price": 405,
+          "rating": 4.9,
+          "reviews": 32286
+        },
+        {
+          "brand": "Marrakech",
+          "title": "Крем для рук и тела парфюмированный увлажняющий женский",
+          "price": 420,
+          "old_price": 1032,
+          "rating": 4.9,
+          "reviews": 32416
+        }
+      ]
+    }
+  }
+}
